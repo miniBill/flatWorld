@@ -38,7 +38,7 @@ int main(int argc, char **argv){
   
   char dim0msg1[]="Y: Dove mi trovo?";
   char dim0msg2[]="Y: Che strano posto è mai questo...";
-  char dim0msg2[]="Y: Mi sento bloccato!";
+  char dim0msg3[]="Y: Mi sento bloccato!";
   slowmessage(dim0msg1,3000);
   napms(500);
   slowmessage(dim0msg2,3000);
