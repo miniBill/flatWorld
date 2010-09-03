@@ -14,6 +14,7 @@ link_directories(/usr/lib)
 
 add_executable(flatWorld
 main.cpp slowriter.cpp
+phaseZero.cpp phaseTwo.cpp
 )
 
 target_link_libraries(flatWorld ncurses)

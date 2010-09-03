@@ -1,8 +1,8 @@
-//#ifdef WIN32
-//#include "curses.h"
-//#else
+#ifdef WIN32
+#include "win/curses.h"
+#else
 #include <ncurses.h>
-//#endif
+#endif
 #include <string.h>
 #include "slowriter.h"
 

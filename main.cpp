@@ -1,10 +1,11 @@
 #include <ncurses.h>
 #include <string.h>
 #include "slowriter.h"
+#include "phaseZero.h"
 
 #include "config.h"
 
-int x,y,z,t;
+int z,t;
 
 void input2d(int in);
 
@@ -33,33 +34,11 @@ int main(int argc, char **argv){
   napms(500);
 #endif
   
+  phaseZero();
+  
   char subj;
 
-#ifndef FAST
-  char dimension0[] = "Dimension : 0";//"Dimensione : 0";
-  slowtitle(dimension0);
-  subj='0';
-  napms(2000);
-  
-  mvaddch(LINES/4,COLS/2,subj);
-  refresh();
-  
-  napms(5000);
-  
-  char dim0msg1[]="Q: Where am I?";//"Y: Dove mi trovo?";
-  char dim0msg2[]="Q: What a strange place is this...";//"Y: Che strano posto e' mai questo?";
-  char dim0msg3[]="Q: I feel blocked!";//Y: Mi sento bloccato!";
-  slowmessage(dim0msg1,3000);
-  napms(500);
-  slowmessage(dim0msg2,3000);
-  napms(500);
-  slowmessage(dim0msg3,3000);
-  
-  napms(3000);
-  
-  mvaddch(LINES/4,COLS/2,' ');
-  refresh();
-  
+#ifdef FAST 
   char dimension1[] = "Dimension : 1";//"Dimensione : 2";
   slowtitle(dimension1);
 #endif
@@ -75,61 +54,8 @@ int main(int argc, char **argv){
   mvaddch(LINES/4,COLS/2,' ');
   refresh();
   
-  char dimension2[] = "Dimension : 2";//"Dimensione : 2";
-  slowtitle(dimension2);
 #endif
-  subj='2';
-#ifndef FAST
-  napms(2000);
-  
-  mvaddch(LINES/4,COLS/2,subj);
-  refresh();
-  
-  napms(5000);
-  
-  char dim2msg1[]="Q: Ah! Much better!";// "Y: Ah! Decisamente meglio!";
-  char dim2msg2[]="Q: I can move, at last...";//"Y: Ora riesco a muovermi...";
-  char dim2msg3[]="Q: I guess I'll take a look around me";//"Y: Mi guardero' un po' in giro";
-  slowmessage(dim2msg1,3000);
-  napms(500);
-  slowmessage(dim2msg2,3000);
-  napms(500);
-  slowmessage(dim2msg3,3000);
-#endif
-  
-  y=LINES/4;
-  x=COLS/2;
-  
-  int in=0;
-
-  do{
-    move(y,x);
-    addch(' ');
-    input2d(in);
-    move(y,x);
-    addch(subj);
-    refresh();
-  } while((in=getch())!='q' && in!=27);
 
   endwin();
   return 0;
-}
-
-void input2d(int in){
-  if((in == KEY_DOWN || in == 's') && y<LINES-1){
-    y++;
-    return;
-  }
-  if((in == KEY_UP || in == 'w') && y>1){
-    y--;
-    return;
-  }
-  if((in == KEY_LEFT || in == 'a') && x>0){
-    x--;
-    return;
-  }
-  if((in == KEY_RIGHT || in == 'd') && x<COLS-1){
-    x++;
-    return;
-  }
 }
