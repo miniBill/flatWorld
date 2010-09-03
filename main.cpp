@@ -2,6 +2,8 @@
 #include <string.h>
 #include "slowriter.h"
 
+#define subj 164
+
 int x,y,z,t;
 
 void input(int in);
@@ -24,26 +26,40 @@ int main(int argc, char **argv){
   
   char greet1[] = "Benvenuto in flatworld...";
   char greet2[] = "...qui comincia il tuo viaggio...";
-  /*slowmessage(greet1);
+  slowmessage(greet1);
   napms(500);
   slowmessage(greet2);
-  napms(500);*/
+  napms(500);
   
   char dimension0[] = "Dimensione : 0";
   slowtitle(dimension0);
   
-  mvaddch(LINES/4,COLS/2,164);
+  mvaddch(LINES/4,COLS/2,subj);
   
   char dim0msg1[]="Y: Dove mi trovo?";
   char dim0msg2[]="Y: Che strano posto è mai questo...";
+  char dim0msg2[]="Y: Mi sento bloccato!";
   slowmessage(dim0msg1,3000);
   napms(500);
-  slowmessage(dim0msg2);
+  slowmessage(dim0msg2,3000);
+  napms(500);
+  slowmessage(dim0msg3,3000);
   
   napms(3000);
   
-  char dimension1[] = "Dimensione : 1";
+  mvaddch(LINES/4,COLS/2,' ');
+  
+  char dimension1[] = "Dimensione : 2";
   slowtitle(dimension1);
+  
+  char dim2msg1[]="Y: Decisamente meglio!";
+  char dim2msg2[]="Y: Ora riesco a muovermi...";
+  char dim2msg3[]="Y: Mi guarderò un po' in giro";
+  slowmessage(dim2msg1,3000);
+  napms(500);
+  slowmessage(dim2msg2,3000);
+  napms(500);
+  slowmessage(dim2msg3,3000);
   
   y=LINES/2;
   x=COLS/2;
@@ -56,7 +72,7 @@ int main(int argc, char **argv){
     addch(' ');
     input(in);
     move(y,x);
-    addch(164);
+    addch(subj);
     refresh();
   }
 
