@@ -2,7 +2,7 @@
 #include <string.h>
 #include "slowriter.h"
 
-#define subj 164
+#define FAST
 
 int x,y,z,t;
 
@@ -24,21 +24,31 @@ int main(int argc, char **argv){
   
   //attron(COLOR_PAIR(1)); //use couple 1 for the following text
   
-  char greet1[] = "Benvenuto in flatworld...";
-  char greet2[] = "...qui comincia il tuo viaggio...";
+#ifndef FAST
+  char greet1[] = "Welcome to flatWorld...";//"Benvenuto a flatWorld...";
+  char greet2[] = "...here start your adventure...";//"...qui comincia la tua avventura...";
   slowmessage(greet1);
   napms(500);
   slowmessage(greet2);
   napms(500);
+#endif
   
-  char dimension0[] = "Dimensione : 0";
+  char subj;
+
+#ifndef FAST
+  char dimension0[] = "Dimension : 0";//"Dimensione : 0";
   slowtitle(dimension0);
+  subj='0';
+  napms(2000);
   
   mvaddch(LINES/4,COLS/2,subj);
+  refresh();
   
-  char dim0msg1[]="Y: Dove mi trovo?";
-  char dim0msg2[]="Y: Che strano posto è mai questo...";
-  char dim0msg3[]="Y: Mi sento bloccato!";
+  napms(5000);
+  
+  char dim0msg1[]="Q: Where am I?";//"Y: Dove mi trovo?";
+  char dim0msg2[]="Q: What a strange place is this...";//"Y: Che strano posto e' mai questo?";
+  char dim0msg3[]="Q: I feel blocked!";//Y: Mi sento bloccato!";
   slowmessage(dim0msg1,3000);
   napms(500);
   slowmessage(dim0msg2,3000);
@@ -48,33 +58,43 @@ int main(int argc, char **argv){
   napms(3000);
   
   mvaddch(LINES/4,COLS/2,' ');
+  refresh();
   
-  char dimension1[] = "Dimensione : 2";
+  char dimension1[] = "Dimension : 2";//"Dimensione : 2";
   slowtitle(dimension1);
+#endif
+  subj='2';
+#ifndef FAST
+  napms(2000);
   
-  char dim2msg1[]="Y: Decisamente meglio!";
-  char dim2msg2[]="Y: Ora riesco a muovermi...";
-  char dim2msg3[]="Y: Mi guarderò un po' in giro";
+  mvaddch(LINES/4,COLS/2,subj);
+  refresh();
+  
+  napms(5000);
+  
+  char dim2msg1[]="Q: Ah! Much better!";// "Y: Ah! Decisamente meglio!";
+  char dim2msg2[]="Q: I can move, at last...";//"Y: Ora riesco a muovermi...";
+  char dim2msg3[]="Q: I guess I'll take a look around me";//"Y: Mi guardero' un po' in giro";
   slowmessage(dim2msg1,3000);
   napms(500);
   slowmessage(dim2msg2,3000);
   napms(500);
   slowmessage(dim2msg3,3000);
+#endif
   
-  y=LINES/2;
+  y=LINES/4;
   x=COLS/2;
-  input(0);
   
   int in=0;
 
-  while((in=getch())!='q' && in!=27){
+  do{
     move(y,x);
     addch(' ');
     input(in);
     move(y,x);
     addch(subj);
     refresh();
-  }
+  } while((in=getch())!='q' && in!=27);
 
   endwin();
   return 0;
@@ -85,7 +105,7 @@ void input(int in){
     y++;
     return;
   }
-  if((in == KEY_UP || in == 'w') && y>0){
+  if((in == KEY_UP || in == 'w') && y>1){
     y--;
     return;
   }
