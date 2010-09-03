@@ -2,11 +2,11 @@
 #include <string.h>
 #include "slowriter.h"
 
-#define FAST
+#include "config.h"
 
 int x,y,z,t;
 
-void input(int in);
+void input2d(int in);
 
 int main(int argc, char **argv){
   initscr();
@@ -26,7 +26,7 @@ int main(int argc, char **argv){
   
 #ifndef FAST
   char greet1[] = "Welcome to flatWorld...";//"Benvenuto a flatWorld...";
-  char greet2[] = "...here starts your adventure...";//"...qui comincia la tua avventura...";
+  char greet2[] = "...your adventure starts here...";//"...qui comincia la tua avventura...";
   slowmessage(greet1);
   napms(500);
   slowmessage(greet2);
@@ -60,8 +60,23 @@ int main(int argc, char **argv){
   mvaddch(LINES/4,COLS/2,' ');
   refresh();
   
-  char dimension1[] = "Dimension : 2";//"Dimensione : 2";
+  char dimension1[] = "Dimension : 1";//"Dimensione : 2";
   slowtitle(dimension1);
+#endif
+  subj='1';
+#ifndef FAST
+  napms(2000);
+  
+  mvaddch(LINES/4,COLS/2,subj);
+  refresh();
+  
+  napms(5000);
+  
+  mvaddch(LINES/4,COLS/2,' ');
+  refresh();
+  
+  char dimension2[] = "Dimension : 2";//"Dimensione : 2";
+  slowtitle(dimension2);
 #endif
   subj='2';
 #ifndef FAST
@@ -90,7 +105,7 @@ int main(int argc, char **argv){
   do{
     move(y,x);
     addch(' ');
-    input(in);
+    input2d(in);
     move(y,x);
     addch(subj);
     refresh();
@@ -100,7 +115,7 @@ int main(int argc, char **argv){
   return 0;
 }
 
-void input(int in){
+void input2d(int in){
   if((in == KEY_DOWN || in == 's') && y<LINES-1){
     y++;
     return;
