@@ -26,7 +26,7 @@ int main(int argc, char **argv){
   
 #ifndef FAST
   char greet1[] = "Welcome to flatWorld...";//"Benvenuto a flatWorld...";
-  char greet2[] = "...here start your adventure...";//"...qui comincia la tua avventura...";
+  char greet2[] = "...here starts your adventure...";//"...qui comincia la tua avventura...";
   slowmessage(greet1);
   napms(500);
   slowmessage(greet2);
