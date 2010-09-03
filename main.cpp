@@ -2,6 +2,8 @@
 #include <string.h>
 #include "slowriter.h"
 #include "phaseZero.h"
+#include "phaseOne.h"
+#include "phaseTwo.h"
 
 #include "config.h"
 
@@ -35,26 +37,8 @@ int main(int argc, char **argv){
 #endif
   
   phaseZero();
-  
-  char subj;
-
-#ifdef FAST 
-  char dimension1[] = "Dimension : 1";//"Dimensione : 2";
-  slowtitle(dimension1);
-#endif
-  subj='1';
-#ifndef FAST
-  napms(2000);
-  
-  mvaddch(LINES/4,COLS/2,subj);
-  refresh();
-  
-  napms(5000);
-  
-  mvaddch(LINES/4,COLS/2,' ');
-  refresh();
-  
-#endif
+  phaseOne();
+  phaseTwo();
 
   endwin();
   return 0;
