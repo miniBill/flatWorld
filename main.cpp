@@ -16,6 +16,7 @@ int main(int argc, char **argv){
   start_color();
   noecho();
   keypad(stdscr,1);
+  cbreak();
   
   init_pair(1,COLOR_WHITE,COLOR_BLUE); //couple 1 set to White on Blue
   init_pair(2,COLOR_BLACK,COLOR_BLUE); //couple 2 set to Black on Blue
@@ -36,8 +37,8 @@ int main(int argc, char **argv){
   napms(500);
 #endif
   
-  phaseZero();
-  phaseOne();
+  //phaseZero();
+  //phaseOne();
   phaseTwo();
 
   endwin();
