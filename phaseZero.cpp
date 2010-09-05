@@ -11,7 +11,9 @@ void phaseZero(){
   slowtitle(dimension0);
   napms(2000);
   
+  attron(A_BOLD);
   mvaddch(LINES/4,COLS/2,'0');
+  attroff(A_BOLD);
   refresh();
   
   napms(5000);

@@ -37,8 +37,8 @@ int main(int argc, char **argv){
   napms(500);
 #endif
   
-  //phaseZero();
-  //phaseOne();
+  phaseZero();
+  phaseOne();
   phaseTwo();
 
   endwin();

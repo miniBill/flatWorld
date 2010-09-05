@@ -28,7 +28,9 @@ void phaseOne(){
 
   napms(2000);
   
+  attron(A_BOLD);
   mvaddch(LINES/4,COLS/2,'1');
+  attroff(A_BOLD);
   refresh();
 
 #ifndef FAST
@@ -49,13 +51,17 @@ void phaseOne(){
 #ifndef FAST
   for(y=LINES/4;y<LINES/2;){
     mvaddch(y,x,' ');
+    attron(A_BOLD);
     mvaddch(++y,x,'1');
+    attroff(A_BOLD);
     refresh();
     napms(250);
   }
   for(;x>COLS/4;){
     mvaddch(y,x,' ');
+    attron(A_BOLD);
     mvaddch(y,--x,'1');
+    attroff(A_BOLD);
     refresh();
     napms(250);
   }
@@ -63,12 +69,18 @@ void phaseOne(){
   y=LINES/2;
   x=COLS/4;
   mvaddch(LINES/4,COLS/2,' ');
+  attron(A_BOLD);
   mvaddch(LINES/2,COLS/4,'1');
+  attroff(A_BOLD);
 #endif
 
   timeout(10);
   
   int in=ERR,lastin;
+  
+  attron(A_BOLD);
+  mvaddch(y,COLS*3/4,'@');
+  attroff(A_BOLD);
   
   while(x<COLS*3/4){
     do{
@@ -84,7 +96,9 @@ void phaseOne(){
       input1d(lastin);
       addch(back?' ':'.');
       move(y,x);
+      attron(A_BOLD);
       addch('1');
+      attroff(A_BOLD);
       refresh();
 #ifndef FAST
       napms(250);
