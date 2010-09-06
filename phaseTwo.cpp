@@ -1,4 +1,4 @@
-#include <ncurses.h>
+#include <ncursesw/ncurses.h>
 #include <stdlib.h>
 
 #include "phaseTwo.h"
@@ -6,8 +6,13 @@
 
 #include "config.h"
 
+#ifndef FAST
 #define width (200)
 #define height (100)
+#else
+#define width (20)
+#define height (10)
+#endif
 #define size (width*height)
 
 #define posy ((LINES/4)*2)
@@ -15,13 +20,21 @@
 
 #define p(gy,gx) ((gy)*width + (gx))
 
+//#define sub L'☻'
+//☻☺
 int terrain[size];
+
+cchar_t sub;
 
 static void generateTerrain(){
   srand(0);
 #define r16 (rand()%16)
   for(int i = 0; i < size; i++)
+#ifndef FAST
     terrain[i]=(r16 & r16 & r16) | (r16 & r16 & r16);
+#else
+    terrain[i]=r16 & r16;
+#endif
 }
 
 static int x,y;
@@ -142,10 +155,6 @@ static void drawTerrain(){
   }
 }
 
-static void presentTerrain(){
-  
-}
-
 static void input2d(int in){
   if((in == KEY_DOWN || in == 's') && y<height-1){
     if(y==height-2){
@@ -177,7 +186,9 @@ static void input2d(int in){
   }
 }
 
-void phaseTwo(){  
+void phaseTwo(){
+  setcchar(&sub,L"2"/*"☻"*/,A_BOLD,2,(void*)0);
+  
   char dimension2[] = "Dimension : 2";//"Dimensione : 2";
   slowtitle(dimension2);
 
@@ -187,7 +198,7 @@ void phaseTwo(){
   x=posx;
   
   attron(A_BOLD);
-  mvaddch(LINES/4,x,'2');
+  mvaddwch(LINES/4,x,sub);
   attroff(A_BOLD);
   refresh();
   
@@ -204,14 +215,12 @@ void phaseTwo(){
 #endif
 
   generateTerrain();
-  
-  presentTerrain();
 
 #ifndef FAST
   for(y=LINES/4;y<posy;){
     mvaddch(y,x,' ');
     attron(A_BOLD);
-    mvaddch(++y,x,'2');
+    mvadd_wch(++y,x,&sub);
     attroff(A_BOLD);
     refresh();
     napms(250);
@@ -219,7 +228,7 @@ void phaseTwo(){
 #else
   mvaddch(y,x,' ');
   attron(A_BOLD);
-  mvaddch(posy,x,'2');
+  mvadd_wch(posy,x,&sub);
   attroff(A_BOLD);
   refresh();
 #endif
@@ -231,7 +240,9 @@ void phaseTwo(){
   
   int in=ERR,lastin;
   
-  while(1){
+  mvprintw(0,0,"WASD/Arrows to move, R to restart, Q to quit.");
+  
+  while(x!=0 || y!=0){
     do{
       lastin=in;
       in=getch();
@@ -248,8 +259,11 @@ void phaseTwo(){
       input2d(lastin);
     drawTerrain();
     attron(A_BOLD);
-    mvaddch(posy,posx,'2');
+    mvadd_wch(posy,posx,&sub);
     attroff(A_BOLD);
+    int lxz=lx(0),lyz=ly(0);
+    if(lxz+1>=0 && lyz+1>1)
+      mvaddch(lyz+1,lxz+1,'@');
     refresh();
 #ifndef FAST
     napms(250);
@@ -257,4 +271,11 @@ void phaseTwo(){
   }
   
   timeout(-1);
+
+  smallerase();
+//mvprintw(0,0,"WASD/Arrows to move, R to restart, Q to quit.");
+  mvprintw(0,0,"                                             ");
+  
+  char final[]="Q: Uh, I got it. What now?";
+  slowmessage(final);
 }

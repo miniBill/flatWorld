@@ -17,4 +17,4 @@ main.cpp slowriter.cpp
 phaseZero.cpp phaseOne.cpp phaseTwo.cpp
 )
 
-target_link_libraries(flatWorld ncurses)
+target_link_libraries(flatWorld ncursesw)

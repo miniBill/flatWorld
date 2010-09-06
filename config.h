@@ -1,2 +1,2 @@
 #pragma once
-//#define FAST
+#define FAST
