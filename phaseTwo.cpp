@@ -1,4 +1,4 @@
-#include <ncursesw/ncurses.h>
+#include <curses.h>
 #include <stdlib.h>
 
 #include "phaseTwo.h"
@@ -20,11 +20,7 @@
 
 #define p(gy,gx) ((gy)*width + (gx))
 
-//#define sub L'☻'
-//☻☺
 int terrain[size];
-
-cchar_t sub;
 
 static void generateTerrain(){
   srand(0);
@@ -186,9 +182,7 @@ static void input2d(int in){
   }
 }
 
-void phaseTwo(){
-  setcchar(&sub,L"2"/*"☻"*/,A_BOLD,2,(void*)0);
-  
+void phaseTwo(){  
   char dimension2[] = "Dimension : 2";//"Dimensione : 2";
   slowtitle(dimension2);
 
@@ -198,7 +192,7 @@ void phaseTwo(){
   x=posx;
   
   attron(A_BOLD);
-  mvaddwch(LINES/4,x,sub);
+  mvaddch(LINES/4,x,sub);
   attroff(A_BOLD);
   refresh();
   
@@ -220,7 +214,7 @@ void phaseTwo(){
   for(y=LINES/4;y<posy;){
     mvaddch(y,x,' ');
     attron(A_BOLD);
-    mvadd_wch(++y,x,&sub);
+    mvaddch(++y,x,sub);
     attroff(A_BOLD);
     refresh();
     napms(250);
@@ -228,7 +222,7 @@ void phaseTwo(){
 #else
   mvaddch(y,x,' ');
   attron(A_BOLD);
-  mvadd_wch(posy,x,&sub);
+  mvaddch(posy,x,sub);
   attroff(A_BOLD);
   refresh();
 #endif
@@ -236,11 +230,11 @@ void phaseTwo(){
   x=width/2;
   y=height/2;
   
-  timeout(10);
-  
   int in=ERR,lastin;
   
   mvprintw(0,0,"WASD/Arrows to move, R to restart, Q to quit.");
+  
+  timeout(10);
   
   while(x!=0 || y!=0){
     do{
@@ -259,7 +253,7 @@ void phaseTwo(){
       input2d(lastin);
     drawTerrain();
     attron(A_BOLD);
-    mvadd_wch(posy,posx,&sub);
+    mvaddch(posy,posx,sub);
     attroff(A_BOLD);
     int lxz=lx(0),lyz=ly(0);
     if(lxz+1>=0 && lyz+1>1)

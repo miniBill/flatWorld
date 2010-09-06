@@ -12,7 +12,7 @@ void phaseZero(){
   napms(2000);
   
   attron(A_BOLD);
-  mvaddch(LINES/4,COLS/2,'0');
+  mvaddch(LINES/4,COLS/2,sub);
   attroff(A_BOLD);
   refresh();
   

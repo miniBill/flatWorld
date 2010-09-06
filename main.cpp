@@ -10,12 +10,7 @@
 
 #include "config.h"
 
-int z,t;
-
-void input2d(int in);
-
 int main(int argc, char **argv){
-  setlocale(LC_ALL,"");
   initscr();
   start_color();
   noecho();
