@@ -152,7 +152,7 @@ static void drawTerrain(){
 }
 
 static void input2d(int in){
-  if((in == KEY_DOWN || in == 's') && y<height-1){
+  if((in == KEY_DOWN || in == 's' || in == 'j') && y<height-1){
     if(y==height-2){
       if(!(terrain[p(y,x)]&4))
 	y++;
@@ -161,17 +161,17 @@ static void input2d(int in){
       y++;
     return;
   }
-  if((in == KEY_UP || in == 'w') && y>0){
+  if((in == KEY_UP || in == 'w' || in == 'k') && y>0){
     if(up(y,x) == '^' || up(y,x) == ' ')
       y--;
     return;
   }
-  if((in == KEY_LEFT || in == 'a') && x>0){
+  if((in == KEY_LEFT || in == 'a' || in == 'h') && x>0){
     if(left(y,x) == '<' || left(y,x) == ' ')
       x--;
     return;
   }
-  if((in == KEY_RIGHT || in == 'd') && x<width-1){
+  if((in == KEY_RIGHT || in == 'd' || in == 'l') && x<width-1){
     if(x==width-2){
       if(!(terrain[p(y,x)]&2))
 	x++;
@@ -232,7 +232,7 @@ void phaseTwo(){
   
   int in=ERR,lastin;
   
-  mvprintw(0,0,"WASD/Arrows to move, R to restart, Q to quit.");
+  mvprintw(0,0,"WASD/HJKL/Arrows to move, R to restart, Q to quit.");
   
   timeout(10);
   
