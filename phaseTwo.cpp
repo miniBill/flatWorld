@@ -6,13 +6,9 @@
 
 #include "config.h"
 
-#ifndef FAST
-#define width (200)
-#define height (100)
-#else
 #define width (40)
 #define height (20)
-#endif
+
 #define size (width*height)
 
 #define posy ((LINES/4)*2)
@@ -203,9 +199,9 @@ void phaseTwo(){
   
   x=posx;
   
-  attron(A_BOLD);
+  attron(A_BOLD|COLOR_PAIR(2));
   mvaddch(LINES/4,x,PLAYER_CHAR);
-  attroff(A_BOLD);
+  attroff(A_BOLD|COLOR_PAIR(2));
   refresh();
   
   napms(5000);
@@ -223,19 +219,19 @@ void phaseTwo(){
   generateTerrain();
 
 #ifndef FAST
+  attron(A_BOLD|COLOR_PAIR(2));
   for(y=LINES/4;y<posy;){
     mvaddch(y,x,' ');
-    attron(A_BOLD);
     mvaddch(++y,x,PLAYER_CHAR);
-    attroff(A_BOLD);
     refresh();
     napms(250);
   }
+  attroff(A_BOLD|COLOR_PAIR(2));
 #else
   mvaddch(y,x,' ');
-  attron(A_BOLD);
+  attron(A_BOLD|COLOR_PAIR(2));
   mvaddch(posy,x,PLAYER_CHAR);
-  attroff(A_BOLD);
+  attroff(A_BOLD|COLOR_PAIR(2));
   refresh();
 #endif
   

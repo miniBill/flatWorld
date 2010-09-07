@@ -35,10 +35,10 @@ int main(int argc, char **argv){
   napms(500);
   slowmessage(greet2);
   napms(500);
-#endif
   
-  //phaseZero();
-  //phaseOne();
+  phaseZero();
+  phaseOne();
+#endif
   phaseTwo();
 
   endwin();
