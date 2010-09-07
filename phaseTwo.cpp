@@ -20,6 +20,10 @@
 
 #define p(gy,gx) ((gy)*width + (gx))
 
+#ifdef WIN32
+#define uint unsigned int
+#endif
+
 uint terrain[size];
 
 static uint x,y;

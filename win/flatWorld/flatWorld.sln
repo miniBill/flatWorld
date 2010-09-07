@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flatWorld", "flatWorld.vcxproj", "{5AEF135F-0D51-4F54-BBA7-B4460ACC2B03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AEF135F-0D51-4F54-BBA7-B4460ACC2B03}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5AEF135F-0D51-4F54-BBA7-B4460ACC2B03}.Debug|Win32.Build.0 = Debug|Win32
+		{5AEF135F-0D51-4F54-BBA7-B4460ACC2B03}.Release|Win32.ActiveCfg = Release|Win32
+		{5AEF135F-0D51-4F54-BBA7-B4460ACC2B03}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
