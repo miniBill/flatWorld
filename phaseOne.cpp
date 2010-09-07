@@ -78,9 +78,9 @@ void phaseOne(){
   
   int in=ERR,lastin;
   
-  attron(A_BOLD);
+  attron(A_BOLD|COLOR_PAIR(3));
   mvaddch(y,COLS*3/4,'$');
-  attroff(A_BOLD);
+  attroff(A_BOLD|COLOR_PAIR(3));
   
   while(x<COLS*3/4){
     do{

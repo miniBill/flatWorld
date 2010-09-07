@@ -268,8 +268,11 @@ void phaseTwo(){
     mvaddch(posy,posx,sub);
     attroff(A_BOLD|COLOR_PAIR(2));
     int lxz=lx(0),lyz=ly(0);
-    if(lxz+1>=0 && lyz+1>1)
+    if(lxz+1>=0 && lyz+1>1){
+      attron(A_BOLD|COLOR_PAIR(3));
       mvaddch(lyz+1,lxz+1,'$');
+      attroff(A_BOLD|COLOR_PAIR(3));
+    }
     refresh();
 #ifndef FAST
     napms(250);
