@@ -1,8 +1,9 @@
-/CMakeFiles
-/Makefile
-/cmake_install.cmake
-/CMakeCache.txt
-/flatWorld
+build
+build/CMakeFiles
+build/Makefile
+build/cmake_install.cmake
+build/CMakeCache.txt
+build/flatWorld
 
 *.swp
-*.\~
+*\~
