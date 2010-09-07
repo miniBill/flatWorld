@@ -204,7 +204,7 @@ void phaseTwo(){
   x=posx;
   
   attron(A_BOLD);
-  mvaddch(LINES/4,x,sub);
+  mvaddch(LINES/4,x,PLAYER_CHAR);
   attroff(A_BOLD);
   refresh();
   
@@ -226,7 +226,7 @@ void phaseTwo(){
   for(y=LINES/4;y<posy;){
     mvaddch(y,x,' ');
     attron(A_BOLD);
-    mvaddch(++y,x,sub);
+    mvaddch(++y,x,PLAYER_CHAR);
     attroff(A_BOLD);
     refresh();
     napms(250);
@@ -234,7 +234,7 @@ void phaseTwo(){
 #else
   mvaddch(y,x,' ');
   attron(A_BOLD);
-  mvaddch(posy,x,sub);
+  mvaddch(posy,x,PLAYER_CHAR);
   attroff(A_BOLD);
   refresh();
 #endif
@@ -265,12 +265,12 @@ void phaseTwo(){
       input2d(lastin);
     drawTerrain();
     attron(A_BOLD|COLOR_PAIR(2));
-    mvaddch(posy,posx,sub);
+    mvaddch(posy,posx,PLAYER_CHAR);
     attroff(A_BOLD|COLOR_PAIR(2));
     int lxz=lx(0),lyz=ly(0);
     if(lxz+1>=0 && lyz+1>1){
       attron(A_BOLD|COLOR_PAIR(3));
-      mvaddch(lyz+1,lxz+1,'$');
+      mvaddch(lyz+1,lxz+1,GOAL_CHAR);
       attroff(A_BOLD|COLOR_PAIR(3));
     }
     refresh();

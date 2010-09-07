@@ -1,3 +1,4 @@
 #pragma once
 #define FAST
-#define sub '@'
+#define PLAYER_CHAR '@'
+#define GOAL_CHAR '$'
