@@ -28,9 +28,9 @@ void phaseOne(){
 
   napms(2000);
   
-  attron(A_BOLD);
+  attron(A_BOLD|COLOR_PAIR(2));
   mvaddch(LINES/4,COLS/2,sub);
-  attroff(A_BOLD);
+  attroff(A_BOLD|COLOR_PAIR(2));
   refresh();
 
 #ifndef FAST
@@ -51,17 +51,17 @@ void phaseOne(){
 #ifndef FAST
   for(y=LINES/4;y<LINES/2;){
     mvaddch(y,x,' ');
-    attron(A_BOLD);
+    attron(A_BOLD|COLOR_PAIR(2));
     mvaddch(++y,x,sub);
-    attroff(A_BOLD);
+    attroff(A_BOLD|COLOR_PAIR(2));
     refresh();
     napms(250);
   }
   for(;x>COLS/4;){
     mvaddch(y,x,' ');
-    attron(A_BOLD);
+    attron(A_BOLD|COLOR_PAIR(2));
     mvaddch(y,--x,sub);
-    attroff(A_BOLD);
+    attroff(A_BOLD|COLOR_PAIR(2));
     refresh();
     napms(250);
   }
@@ -69,9 +69,9 @@ void phaseOne(){
   y=LINES/2;
   x=COLS/4;
   mvaddch(LINES/4,COLS/2,' ');
-  attron(A_BOLD);
+  attron(A_BOLD|COLOR_PAIR(2));
   mvaddch(LINES/2,COLS/4,sub);
-  attroff(A_BOLD);
+  attroff(A_BOLD|COLOR_PAIR(2));
 #endif
 
   timeout(10);
@@ -96,9 +96,9 @@ void phaseOne(){
       input1d(lastin);
       addch(back?' ':'.');
       move(y,x);
-      attron(A_BOLD);
+      attron(A_BOLD|COLOR_PAIR(2));
       addch(sub);
-      attroff(A_BOLD);
+      attroff(A_BOLD|COLOR_PAIR(2));
       refresh();
 #ifndef FAST
       napms(250);

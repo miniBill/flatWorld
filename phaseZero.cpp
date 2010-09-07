@@ -11,9 +11,10 @@ void phaseZero(){
   slowtitle(dimension0);
   napms(2000);
   
-  attron(A_BOLD);
+  attron(A_BOLD|COLOR_PAIR(2));
   mvaddch(LINES/4,COLS/2,sub);
-  attroff(A_BOLD);
+  attroff(A_BOLD|COLOR_PAIR(2));
+  attron(COLOR_PAIR(1));
   refresh();
   
   napms(5000);

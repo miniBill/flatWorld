@@ -264,9 +264,9 @@ void phaseTwo(){
     if(lastin!=ERR)
       input2d(lastin);
     drawTerrain();
-    attron(A_BOLD);
+    attron(A_BOLD|COLOR_PAIR(2));
     mvaddch(posy,posx,sub);
-    attroff(A_BOLD);
+    attroff(A_BOLD|COLOR_PAIR(2));
     int lxz=lx(0),lyz=ly(0);
     if(lxz+1>=0 && lyz+1>1)
       mvaddch(lyz+1,lxz+1,'@');

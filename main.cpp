@@ -18,7 +18,7 @@ int main(int argc, char **argv){
   cbreak();
   
   init_pair(1,COLOR_WHITE,COLOR_BLUE); //couple 1 set to White on Blue
-  init_pair(2,COLOR_BLACK,COLOR_BLUE); //couple 2 set to Black on Blue
+  init_pair(2,COLOR_RED,COLOR_BLUE);   //couple 2 set to Red   on Blue
 
   curs_set(0); //makes cursor invisible
   
