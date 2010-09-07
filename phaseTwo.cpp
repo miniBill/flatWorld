@@ -40,15 +40,9 @@ static unsigned long urand(){
 
 static void generateTerrain(){
 #define r16 (urand()%16)
-
-#ifndef FAST
   for(int i = 0; i < size; i++)
-    terrain[i]=(r16 & r16 & r16) | (r16 & r16 & r16);
-#else
-  for(int i = 0; i < size; i++)
-    for(int h=0;h<11;h++)
-    terrain[i]|=(r16 & r16 & r16);
-#endif
+    for(int h=0;h<8;h++)
+      terrain[i]|=(r16 & r16 & r16 & r16);
 }
 
 static int lx(int gx){
@@ -245,8 +239,8 @@ void phaseTwo(){
   refresh();
 #endif
   
-  x=width/2;
-  y=height/2;
+  x=width-1;
+  y=height-1;
   
   int in=ERR,lastin;
   
@@ -259,8 +253,8 @@ void phaseTwo(){
       lastin=in;
       in=getch();
       if(in=='r'){
-        x=width/2;
-	y=height/2;
+        x=width-1;
+	y=height-1;
       }
     }while(in!=ERR);
     
