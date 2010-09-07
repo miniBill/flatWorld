@@ -10,8 +10,8 @@
 #define width (200)
 #define height (100)
 #else
-#define width (20)
-#define height (10)
+#define width (40)
+#define height (20)
 #endif
 #define size (width*height)
 
@@ -20,20 +20,32 @@
 
 #define p(gy,gx) ((gy)*width + (gx))
 
-int terrain[size];
+uint terrain[size];
 
-static void generateTerrain(){
-  srand(0);
-#define r16 (rand()%16)
-  for(int i = 0; i < size; i++)
-#ifndef FAST
-    terrain[i]=(r16 & r16 & r16) | (r16 & r16 & r16);
-#else
-    terrain[i]=r16 & r16;
-#endif
+static uint x,y;
+
+static uint xrand=0;
+static uint c=13;
+
+static unsigned long urand(){
+  unsigned long long nxrand=(32718*xrand+c);
+  xrand=(uint)nxrand;
+  c=(uint)nxrand>>16;
+  return xrand;
 }
 
-static int x,y;
+static void generateTerrain(){
+#define r16 (urand()%16)
+
+#ifndef FAST
+  for(int i = 0; i < size; i++)
+    terrain[i]=(r16 & r16 & r16) | (r16 & r16 & r16);
+#else
+  for(int i = 0; i < size; i++)
+    for(int h=0;h<11;h++)
+    terrain[i]|=(r16 & r16 & r16);
+#endif
+}
 
 static int lx(int gx){
   return (gx-x)*2-1+posx;
@@ -98,6 +110,8 @@ static char left(int gy,int gx){
 static void drawTerrain(){
   int my=0,mx=0;
   smallerase();
+  mvprintw(0, COLS-15,"              ");
+  mvprintw(0, COLS-15,"x: %d, y: %d",x,y);
   while(ly(my)<1)my++;
   while(lx(mx)<0)mx++;
   for(int gy=my; gy<=height && ly(gy)<LINES; gy++){
@@ -246,7 +260,7 @@ void phaseTwo(){
       }
     }while(in!=ERR);
     
-    if(in=='q' || in==27)
+    if(lastin=='q' || lastin==27)
       break;
     
     if(lastin!=ERR)
@@ -262,6 +276,11 @@ void phaseTwo(){
 #ifndef FAST
     napms(250);
 #endif
+  }
+  
+  if(x!=0 || y!=0){
+    endwin();
+    exit(0);
   }
   
   timeout(-1);
