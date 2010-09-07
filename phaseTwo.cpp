@@ -284,8 +284,8 @@ void phaseTwo(){
   timeout(-1);
 
   smallerase();
-//mvprintw(0,0,"WASD/Arrows to move, R to restart, Q to quit.");
-  mvprintw(0,0,"                                             ");
+//mvprintw(0,0,"WASD/HJKL/Arrows to move, R to restart, Q to quit.");
+  mvprintw(0,0,"                                                  ");
   
   char final[]="Q: Uh, I got it. What now?";
   slowmessage(final);
