@@ -29,7 +29,7 @@ void phaseOne(){
   napms(2000);
   
   attron(A_BOLD|COLOR_PAIR(2));
-  mvaddch(LINES/4,COLS/2,sub);
+  mvaddch(LINES/4,COLS/2,PLAYER_CHAR);
   attroff(A_BOLD|COLOR_PAIR(2));
   refresh();
 
@@ -52,7 +52,7 @@ void phaseOne(){
   for(y=LINES/4;y<LINES/2;){
     mvaddch(y,x,' ');
     attron(A_BOLD|COLOR_PAIR(2));
-    mvaddch(++y,x,sub);
+    mvaddch(++y,x,PLAYER_CHAR);
     attroff(A_BOLD|COLOR_PAIR(2));
     refresh();
     napms(250);
@@ -60,7 +60,7 @@ void phaseOne(){
   for(;x>COLS/4;){
     mvaddch(y,x,' ');
     attron(A_BOLD|COLOR_PAIR(2));
-    mvaddch(y,--x,sub);
+    mvaddch(y,--x,PLAYER_CHAR);
     attroff(A_BOLD|COLOR_PAIR(2));
     refresh();
     napms(250);
@@ -70,7 +70,7 @@ void phaseOne(){
   x=COLS/4;
   mvaddch(LINES/4,COLS/2,' ');
   attron(A_BOLD|COLOR_PAIR(2));
-  mvaddch(LINES/2,COLS/4,sub);
+  mvaddch(LINES/2,COLS/4,PLAYER_CHAR);
   attroff(A_BOLD|COLOR_PAIR(2));
 #endif
 
@@ -79,7 +79,7 @@ void phaseOne(){
   int in=ERR,lastin;
   
   attron(A_BOLD);
-  mvaddch(y,COLS*3/4,'@');
+  mvaddch(y,COLS*3/4,GOAL_CHAR);
   attroff(A_BOLD);
   
   while(x<COLS*3/4){
@@ -97,7 +97,7 @@ void phaseOne(){
       addch(back?' ':'.');
       move(y,x);
       attron(A_BOLD|COLOR_PAIR(2));
-      addch(sub);
+      addch(PLAYER_CHAR);
       attroff(A_BOLD|COLOR_PAIR(2));
       refresh();
 #ifndef FAST
