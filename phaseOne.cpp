@@ -79,7 +79,7 @@ void phaseOne(){
   int in=ERR,lastin;
   
   attron(A_BOLD);
-  mvaddch(y,COLS*3/4,'@');
+  mvaddch(y,COLS*3/4,'$');
   attroff(A_BOLD);
   
   while(x<COLS*3/4){
