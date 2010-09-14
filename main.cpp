@@ -1,12 +1,14 @@
 #include <curses.h>
+#include <caca.h>
 #include <string.h>
-#include <locale.h>
+#include <stdlib.h>
 
 #include "slowriter.h"
 
 #include "phaseZero.h"
 #include "phaseOne.h"
 #include "phaseTwo.h"
+#include "phaseThree.h"
 
 #include "config.h"
 
@@ -38,9 +40,27 @@ int main(int argc, char **argv){
   
   phaseZero();
   phaseOne();
-#endif
   phaseTwo();
-
+#endif
   endwin();
+  
+  setenv("CACA_DRIVER","ncurses",1);
+  
+  caca_canvas_t * cv;
+  caca_display_t * dp;
+  caca_event_t ev;
+
+  dp = caca_create_display(NULL);
+  if(!dp) return 1;
+  cv = caca_get_canvas(dp);
+  caca_set_display_title(dp, "flatWorld: Dimension 3");
+  caca_set_color_ansi(cv, CACA_WHITE, CACA_BLUE);
+  caca_refresh_display(dp);
+
+  phaseThree(dp,cv);
+  caca_get_event(dp, CACA_EVENT_KEY_PRESS, &ev, -1);
+
+  caca_free_display(dp);
+
   return 0;
 }
