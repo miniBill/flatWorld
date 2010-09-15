@@ -1,10 +1,10 @@
 #include <curses.h>
 #include <stdlib.h>
 
+#include "config.h"
+
 #include "phaseTwo.h"
 #include "slowriter.h"
-
-#include "config.h"
 
 #define width (40)
 #define height (20)

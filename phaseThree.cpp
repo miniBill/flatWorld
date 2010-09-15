@@ -1,9 +1,9 @@
 #include <caca.h>
 
+#include "config.h"
+
 #include "phaseThree.h"
 #include "slowriter.h"
-
-#include "config.h"
 
 struct point3{
   float x,y,z;

@@ -1,9 +1,9 @@
 #include <curses.h>
 
+#include "config.h"
+
 #include "phaseZero.h"
 #include "slowriter.h"
-
-#include "config.h"
 
 void phaseZero(){
 #ifndef FAST
