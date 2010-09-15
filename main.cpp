@@ -58,7 +58,6 @@ int main(int argc, char **argv){
   caca_refresh_display(dp);
 
   phaseThree(dp,cv);
-  caca_get_event(dp, CACA_EVENT_KEY_PRESS, &ev, -1);
 
   caca_free_display(dp);
 
