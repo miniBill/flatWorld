@@ -25,7 +25,7 @@ int main(int argc, char **argv){
 
   curs_set(0); //makes cursor invisible
   
-  bkgd(COLOR_PAIR(1)); // use couple 1 for background
+  bkgd(COLOR_PAIR(1)); // use couple 1 for background (and implicitly, for the text)
   refresh();
   
   //attron(COLOR_PAIR(1)); //use couple 1 for the following text
