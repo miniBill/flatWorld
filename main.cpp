@@ -3,14 +3,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "config.h"
+
 #include "slowriter.h"
 
 #include "phaseZero.h"
 #include "phaseOne.h"
 #include "phaseTwo.h"
 #include "phaseThree.h"
-
-#include "config.h"
 
 int main(int argc, char **argv){
   initscr();
@@ -64,3 +64,4 @@ int main(int argc, char **argv){
 
   return 0;
 }
+

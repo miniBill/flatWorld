@@ -1,9 +1,9 @@
 #include <caca.h>
 
+#include "config.h"
+
 #include "phaseThree.h"
 #include "slowriter.h"
-
-#include "config.h"
 
 struct point3{
   float x,y,z;
@@ -65,3 +65,4 @@ void phaseThree(caca_display_t * dp, caca_canvas_t * cv){
   
   caca_refresh_display(dp);
 }
+

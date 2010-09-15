@@ -13,3 +13,4 @@ $ make
 Note that you could very well run cmake in the project's root, but creating a
 "build" directory is recommended, as to segregate source files from temporary
 project files, and to allow the easy removal of those temporary files.
+

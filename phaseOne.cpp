@@ -1,10 +1,10 @@
 #include <curses.h>
 #include <stdlib.h>
 
+#include "config.h"
+
 #include "phaseOne.h"
 #include "slowriter.h"
-
-#include "config.h"
 
 static int x,y;
 
@@ -122,3 +122,4 @@ void phaseOne(){
   char moveOn[]="Q: Let's move on, now...";
   slowmessage(moveOn,3000);
 }
+

@@ -18,3 +18,4 @@ phaseZero.cpp phaseOne.cpp phaseTwo.cpp phaseThree.cpp
 )
 
 target_link_libraries(flatWorld ncursesw caca)
+

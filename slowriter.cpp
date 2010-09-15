@@ -55,3 +55,4 @@ void slowmessage(char * message,int delay){
 void slowtitle(char * message){
   slowrite(0,(COLS-strlen(message))/2,message);
 }
+

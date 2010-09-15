@@ -1,10 +1,10 @@
 #include <curses.h>
 #include <stdlib.h>
 
+#include "config.h"
+
 #include "phaseTwo.h"
 #include "slowriter.h"
-
-#include "config.h"
 
 #define width (40)
 #define height (20)
@@ -15,10 +15,6 @@
 #define posx ((COLS/4)*2)+1
 
 #define p(gy,gx) ((gy)*width + (gx))
-
-#ifdef WIN32
-#define uint unsigned int
-#endif
 
 uint terrain[size];
 
@@ -289,3 +285,4 @@ void phaseTwo(){
   char final[]="Q: Uh, I got it. What now?";
   slowmessage(final);
 }
+
