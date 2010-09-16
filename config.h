@@ -1,10 +1,10 @@
 #pragma once
-#define FAST
+//#define FAST
 #define PLAYER_CHAR '@'
 #define GOAL_CHAR '$'
 
 // Typedefs and stuff
-#ifdef WIN32
+#ifndef uint
 typedef unsigned int uint;
 #endif
 

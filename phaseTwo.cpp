@@ -56,7 +56,7 @@ static char up(int gy,int gx){
     if(terrain[p(gy,gx)]&1)
       return '*';
     else
-      return '*';//HACK
+      return '*';
   }
   else{
     if(terrain[p(gy,gx)]&1){
@@ -79,7 +79,7 @@ static char left(int gy,int gx){
     if(terrain[p(gy,gx)]&8)
       return '*';
     else
-      return '*';//HACK
+      return '*';
   }
   else{
     if(terrain[p(gy,gx)]&8){
@@ -107,6 +107,7 @@ static void drawTerrain(){
   for(int gy=my; gy<=height && ly(gy)<LINES; gy++){
     for(int gx=mx; gx<=width && lx(gx)<COLS; gx++){
       //ul
+      attron(COLOR_PAIR(4)|A_BOLD);
       mvaddch(ly(gy),lx(gx),'*');
       if(gy != height && gx != width){
 	int Col=lx(gx)+1;
@@ -123,32 +124,32 @@ static void drawTerrain(){
 	if(hasCol){
 	  //up
 	  char u=up(gy,gx);
-	  mvaddch(ly(gy),Col,u);
+	  if(u=='*')
+	    attron(A_BOLD);
+	  else
+	    attroff(A_BOLD);
+          mvaddch(ly(gy),Col,u);
 	  
 	  //mid
 	  if(hasLine)
 	    mvaddch(Line,Col,' ');
 	  
 	  //down
-	  if(hasSLine && gy==height-1){
-	    if(terrain[p(gy,gx)]&4)
+	  if(hasSLine && gy==height-1)
 	      mvaddch(SLine,Col,'*');
-	    else
-	      mvaddch(SLine,Col,'*');//HACK
-	  }
 	}
 	if(hasLine){
 	  //left
 	  char l=left(gy,gx);
+	  if(l=='*')
+	    attron(A_BOLD);
+	  else
+	    attroff(A_BOLD);
 	  mvaddch(Line,lx(gx),l);
 	  
 	  //right
-	  if(hasSCol && gx==width-1){
-	    if(terrain[p(gy,gx)]&2)
-	      mvaddch(Line,SCol,'*');
-	    else
-	      mvaddch(Line,SCol,'*');//HACK
-	  }
+	  if(hasSCol && gx==width-1)
+	    mvaddch(Line,SCol,'*');
 	}
       }
     }
@@ -189,6 +190,8 @@ static void input2d(int in){
 void phaseTwo(){  
   char dimension2[] = "Dimension : 2";//"Dimensione : 2";
   slowtitle(dimension2);
+
+  init_pair(4,COLOR_YELLOW,COLOR_BLUE);
 
 #ifndef FAST
   napms(2000);
