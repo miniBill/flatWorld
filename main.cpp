@@ -1,5 +1,7 @@
 #include <curses.h>
+#ifdef CACA
 #include <caca.h>
+#endif
 #include <string.h>
 #include <stdlib.h>
 
@@ -10,7 +12,9 @@
 #include "phaseZero.h"
 #include "phaseOne.h"
 #include "phaseTwo.h"
+#ifdef CACA
 #include "phaseThree.h"
+#endif
 
 int main(int argc, char **argv){
   initscr();
@@ -40,10 +44,11 @@ int main(int argc, char **argv){
   
   phaseZero();
   phaseOne();
-  phaseTwo();
 #endif
+  phaseTwo();
   endwin();
-  
+
+#ifdef CACA  
   setenv("CACA_DRIVER","ncurses",1);
   
   caca_canvas_t * cv;
@@ -60,6 +65,7 @@ int main(int argc, char **argv){
   phaseThree(dp,cv);
 
   caca_free_display(dp);
+#endif
 
   return 0;
 }
